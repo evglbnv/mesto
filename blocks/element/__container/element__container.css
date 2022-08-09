@@ -1,0 +1,10 @@
+.element__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    padding-left: 21px;
+    padding-right: 15px;
+    padding-bottom: 31px;
+    padding-top: 25px;
+}

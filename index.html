@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body class="root">
+    <div class="page">
+
+        <header class="header">
+            <img class="header__logo" src="./images/Vector.svg" alt="Логотип">
+        </header>
+
+        <main>
+            <section class="profile">
+                <img class="profile__avatar" src="./images/avatar.png" alt="Аватар">
+                <div class="profile__container">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit" type="button"></button>
+                    <p class="profile__profession">Исследователь океана</p>
+                </div>
+                <button class="profile__add" type="button"></button>
+            </section>
+
+            <section>
+                <ul class="element">
+                    <li class="element__card">
+                        <img src="./images/Kirov.jpg" alt="" class="element__image">
+                        <div class="element__container">
+                            <h2 class="element__text">Киров</h2>
+                            <button class="element__like" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="element__card">
+                        <img src="./images/moscow.jpg" alt="" class="element__image">
+                        <div class="element__container">
+                            <h2 class="element__text">Москва</h2>
+                            <button class="element__like" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="element__card">
+                        <img src="./images/berlin.jpg" alt="" class="element__image">
+                        <div class="element__container">
+                            <h2 class="element__text">Берлин</h2>
+                            <button class="element__like" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="element__card">
+                        <img src="./images/London.jpg" alt="" class="element__image">
+                        <div class="element__container">
+                            <h2 class="element__text">Лондон</h2>
+                            <button class="element__like" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="element__card">
+                        <img src="./images/New-York.jpg" alt="" class="element__image">
+                        <div class="element__container">
+                            <h2 class="element__text">Нью-Йорк</h2>
+                            <button class="element__like" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="element__card">
+                        <img src="./images/Boston.jpg" alt="" class="element__image">
+                        <div class="element__container">
+                            <h2 class="element__text">Бостон</h2>
+                            <button class="element__like" type="button"></button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+
+            <footer class="footer">
+                <p class="footer__name">&#169; 2022 Mesto Russia</p>
+            </footer>
+    </div>
+    </div>
+    </main>
+    </div>
+    <div class="popup popup_type_edit-profile">
+        <div class="popup__container">
+            <button class="popup__close" type="button"></button>
+            <form class="popup__form">
+                <h3 class="popup__heading">Редактировать профиль</h3>
+                <input class="popup__input popup__input_type_name" type="text" name="name" value="Жак-Ив Кусто"
+                    id="name" placeholder="Имя" required>
+                <input class="popup__input popup__input_type_job" type="text" name="occupation"
+                    value="Исследователь океана" id="occupation" placeholder="Ваша Деятельность" required>
+                <button type="submit" class="popup__button">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="./scripts/index.js"></script>
+</body>
