@@ -2,10 +2,11 @@
     background-color: #fff;
     max-width: 430px;
     width: 100%;
-    border-radius: 15px;
+    border-radius: 10px;
     position: relative;
     padding: 36px;
     box-sizing: border-box;
+    box-shadow: 0px 0px 25px #00000033;
 }
 
 @media screen and (max-width: 700px) {

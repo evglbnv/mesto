@@ -10,12 +10,14 @@
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
+    max-width: 420px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 820px) {
     .profile__name {
         text-align: center;
         font-size: 27px;
         line-height: 33px;
+        max-width: 220px;
     }
 }

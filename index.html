@@ -25,8 +25,8 @@
                 <button class="profile__add" type="button"></button>
             </section>
 
-            <section>
-                <ul class="element">
+            <section class="element">
+                <ul class="element__list">
                     <li class="element__card">
                         <img src="./images/Kirov.jpg" alt="Киров" class="element__image">
                         <div class="element__container">
@@ -72,16 +72,15 @@
                 </ul>
             </section>
 
-
-            <footer class="footer">
-                <p class="footer__name">&#169; 2022 Mesto Russia</p>
-            </footer>
         </main>
+        <footer class="footer">
+            <p class="footer__name">&#169; 2022 Mesto Russia</p>
+        </footer>
     </div>
     <div class="popup popup_type_edit-profile">
         <div class="popup__container">
             <button class="popup__close" type="button"></button>
-            <form class="popup__form">
+            <form class="popup__form" name="profile-info">
                 <h3 class="popup__heading">Редактировать профиль</h3>
                 <input class="popup__input popup__input_type_name" type="text" name="name" value="Жак-Ив Кусто"
                     id="name" placeholder="Имя" required>
