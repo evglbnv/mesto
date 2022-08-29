@@ -3,16 +3,12 @@ const profileEditPopup = document.querySelector(".popup_type_edit-profile");
 const cardAddPopup = document.querySelector(".popup_type_add-card");
 const popupShowImage = document.querySelector(".popup_type_show-image");
 const closePopupButtons = document.querySelectorAll(".popup__close");
-
 const popupBtnEditOpen = document.querySelector(".profile__edit");
-
 const popupBtnAddOpen = document.querySelector(".profile__add");
-
 const formEditElement = document.querySelector(".popup__form");
 const nameInput = formEditElement.querySelector(".popup__input_type_name");
 const jobInput = formEditElement.querySelector(".popup__input_type_job");
 const profileSubmit = formEditElement.querySelector("popup__button");
-
 const profileElement = document.querySelector(".profile");
 const profileName = profileElement.querySelector(".profile__name");
 const profileJob = profileElement.querySelector(".profile__profession");
@@ -20,13 +16,10 @@ const cardTemplate = document.querySelector(".cards__template");
 const listElement = document.querySelector(".element__list");
 const inputElementAddName = document.querySelector(".popup__input_place_name");
 const inputElementAddLink = document.querySelector(".popup__input_place_link");
-
 const formAddCard = document.querySelector("#popupAddForm");
 const formAddPlaceName = formAddCard.querySelector(".popup__input_place_name");
 const formAddLink = formAddCard.querySelector(".popup__input_place_link");
-
 const cardImage = document.querySelector(".element__image");
-const closePopupImageBtn = document.querySelector("#popupShowCloseBtn");
 const popupOpenImage = document.querySelector(".popup__image");
 const popupOpenImageText = document.querySelector(".popup__figcaption");
 
@@ -46,6 +39,7 @@ function closePopup(popups) {
   popups.classList.remove("popup_opened");
 }
 
+// Добавление value в форму редактирования
 function setEditProfile() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -64,8 +58,10 @@ function handleEditFormSubmit(evt) {
   profileJob.textContent = jobInput.value;
   closePopup(profileEditPopup);
 }
+
 formEditElement.addEventListener("submit", handleEditFormSubmit);
 
+//слушатель открытия формы добавления карточки
 popupBtnAddOpen.addEventListener("click", () => openPopup(cardAddPopup));
 
 // Функция добавления карточек
@@ -86,7 +82,7 @@ function addCard(cardName, cardLink) {
   return cardElement;
 }
 
-//Метод forEach для работы с массивом и функция prepend
+//Метод forEach для работы с массивом и prepend
 initialCards.forEach((element) => {
   const initialCard = addCard(element.name, element.link);
   listElement.prepend(initialCard);
@@ -104,6 +100,7 @@ function handleCardFormSubmit(evt) {
   closePopup(cardAddPopup);
 }
 
+// слушатель сабмита формы добавления карточки
 formAddCard.addEventListener("submit", handleCardFormSubmit);
 
 // функция добавления like__active
