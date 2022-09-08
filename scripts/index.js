@@ -1,14 +1,16 @@
-const popups = document.querySelector(".popup");
+const popup = document.querySelectorAll(".popup");
 const profileEditPopup = document.querySelector(".popup_type_edit-profile");
 const cardAddPopup = document.querySelector(".popup_type_add-card");
 const popupShowImage = document.querySelector(".popup_type_show-image");
 const closePopupButtons = document.querySelectorAll(".popup__close");
 const popupBtnEditOpen = document.querySelector(".profile__edit");
 const popupBtnAddOpen = document.querySelector(".profile__add");
-const formEditElement = document.querySelector(".popup__form");
-const nameInput = formEditElement.querySelector(".popup__input_type_name");
-const jobInput = formEditElement.querySelector(".popup__input_type_job");
-const profileSubmit = formEditElement.querySelector("popup__button");
+
+const formEditElement = document.querySelector("#popupEditForm");
+
+const nameInput = document.querySelector(".popup__input_type_name");
+const jobInput = document.querySelector(".popup__input_type_job");
+const profileSubmit = document.querySelector("popup__button");
 const profileElement = document.querySelector(".profile");
 const profileName = profileElement.querySelector(".profile__name");
 const profileJob = profileElement.querySelector(".profile__profession");
@@ -29,14 +31,30 @@ closePopupButtons.forEach((button) => {
   button.addEventListener("click", () => closePopup(popup));
 });
 
+function closeCardOnOverlay(evt) {
+  if (evt.target.classList.contains("popup_opened")) {
+    evt.target.classList.remove("popup_opened");
+  }
+}
+
+function pressEscButton(evt) {
+  if (evt.key === "Escape") {
+    const popupOpened = document.querySelector(".popup_opened");
+    closePopup(popupOpened);
+  }
+}
+
 // Универсальная функция открытия Popup
-function openPopup(popups) {
-  popups.classList.add("popup_opened");
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+  popup.addEventListener("click", closeCardOnOverlay);
+  document.addEventListener("keydown", pressEscButton);
 }
 
 // Универсальная функция закрытия Popup
-function closePopup(popups) {
-  popups.classList.remove("popup_opened");
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", pressEscButton);
 }
 
 // Добавление value в форму редактирования
@@ -95,8 +113,7 @@ function handleCardFormSubmit(evt) {
   const cardLinkPhoto = formAddLink.value;
   addCard(cardNameHeading, cardLinkPhoto);
   listElement.prepend(addCard(cardNameHeading, cardLinkPhoto));
-  formAddPlaceName.value = "";
-  formAddLink.value = "";
+  formAddCard.reset();
   closePopup(cardAddPopup);
 }
 

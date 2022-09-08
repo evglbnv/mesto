@@ -47,26 +47,36 @@
     <div class="popup popup_type_edit-profile" id="popupEdit">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
-        <form class="popup__form" name="profile-info">
+        <form class="popup__form" name="profile-info" id="popupEditForm">
           <h3 class="popup__heading">Редактировать профиль</h3>
-          <input
-            class="popup__input popup__input_type_name"
-            type="text"
-            name="name"
-            value="Жак-Ив Кусто"
-            id="name"
-            placeholder="Имя"
-            required
-          />
-          <input
-            class="popup__input popup__input_type_job"
-            type="text"
-            name="occupation"
-            value="Исследователь океана"
-            id="occupation"
-            placeholder="Ваша Деятельность"
-            required
-          />
+          <label class="popup__field">
+            <input
+              class="popup__input popup__input_type_name"
+              type="text"
+              name="name"
+              value="Жак-Ив Кусто"
+              id="name"
+              placeholder="Имя"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="name-error popup__error_visible"></span>
+          </label>
+          <label class="popup__field">
+            <input
+              class="popup__input popup__input_type_job"
+              type="text"
+              name="occupation"
+              value="Исследователь океана"
+              id="occupation"
+              placeholder="Ваша Деятельность"
+              minlength="2"
+              maxlength="400"
+              required
+            />
+            <span class="occupation-error popup__error_visible"></span>
+          </label>
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
       </div>
@@ -81,22 +91,30 @@
         ></button>
         <form class="popup__form" name="profile-add" id="popupAddForm">
           <h3 class="popup__heading">Новое место</h3>
-          <input
-            class="popup__input popup__input_place_name"
-            type="text"
-            name="popupAddPlace"
-            id="addName"
-            placeholder="Название"
-            required
-          />
-          <input
-            class="popup__input popup__input_place_link"
-            type="text"
-            name="poppAddLink"
-            id="addLink"
-            placeholder="Ссылка на картинку"
-            required
-          />
+          <label class="popup__field">
+            <input
+              class="popup__input popup__input_place_name"
+              type="text"
+              name="popupAddPlace"
+              id="add-name"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="add-name-error popup__error_visible"></span>
+          </label>
+          <label class="popup__field">
+            <input
+              class="popup__input popup__input_place_link"
+              type="url"
+              name="poppAddLink"
+              id="add-link"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="add-link-error popup__error_visible"></span>
+          </label>
           <button type="submit" class="popup__button" id="popupAddSubmitBtn">
             Сохранить
           </button>
@@ -116,5 +134,6 @@
     </div>
     <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>
