@@ -82,4 +82,11 @@ const enableValidation = (config) => {
   });
 };
 
+// функция Disable кнопки сабмита формы при открытии формы добавления карточки
+function disableButton(popup, config) {
+  const button = popup.querySelector(config.submitButtonSelector);
+  button.disabled = true;
+  button.classList.add(config.inactiveButtonClass);
+}
+
 enableValidation(validationConfig);

@@ -32,8 +32,9 @@ closePopupButtons.forEach((button) => {
 });
 
 function closeCardOnOverlay(evt) {
-  if (evt.target.classList.contains("popup_opened")) {
-    evt.target.classList.remove("popup_opened");
+  const popupToOverlayClose = document.querySelector(".popup_opened");
+  if (evt.target === popupToOverlayClose) {
+    closePopup(popupToOverlayClose);
   }
 }
 
@@ -80,7 +81,10 @@ function handleEditFormSubmit(evt) {
 formEditElement.addEventListener("submit", handleEditFormSubmit);
 
 //слушатель открытия формы добавления карточки
-popupBtnAddOpen.addEventListener("click", () => openPopup(cardAddPopup));
+popupBtnAddOpen.addEventListener("click", () => {
+  openPopup(cardAddPopup);
+  disableButton(cardAddPopup, validationConfig);
+});
 
 // Функция добавления карточек
 function addCard(cardName, cardLink) {
