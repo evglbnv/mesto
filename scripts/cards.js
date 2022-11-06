@@ -1,7 +1,7 @@
-const initialCards = [
+export const initialCards = [
   {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+    name: "Ленинск",
+    link: "https://vetert.ru/rossiya/volgogradskaya-oblast/sights/134-leninsk/02.png",
   },
   {
     name: "Челябинская область",
