@@ -1,3 +1,5 @@
+import { openImagePopup } from "./index.js";
+
 export default class Card {
   constructor(cardName, cardLink, templateSelector) {
     this._cardName = cardName;
@@ -39,14 +41,6 @@ export default class Card {
     this._element.remove();
   }
 
-  _handleOpenImagePopup() {
-    document.querySelector(".popup__image").src = this._cardLink;
-    document.querySelector(".popup__figcaption").textContent = this._cardName;
-    document
-      .querySelector(".popup_type_show-image")
-      .classList.add("popup_opened");
-  }
-
   _handleCloseImagePopup() {
     document.querySelector(".popup__image").src = "";
     document
@@ -70,7 +64,7 @@ export default class Card {
     this._element
       .querySelector(".element__image")
       .addEventListener("click", () => {
-        this._handleOpenImagePopup();
+        openImagePopup(this._cardName, this._cardLink);
       });
 
     document

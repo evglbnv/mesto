@@ -8,7 +8,7 @@ const popup = document.querySelectorAll(".popup");
 const profileEditPopup = document.querySelector(".popup_type_edit-profile");
 const cardAddPopup = document.querySelector(".popup_type_add-card");
 const popupShowImage = document.querySelector(".popup_type_show-image");
-const closePopupButtons = document.querySelectorAll(".popup__close");
+const ButtonsСlosePopup = document.querySelectorAll(".popup__close");
 const popupBtnEditOpen = document.querySelector(".profile__edit");
 const popupBtnAddOpen = document.querySelector(".profile__add");
 
@@ -32,7 +32,7 @@ const popupOpenImage = document.querySelector(".popup__image");
 const popupOpenImageText = document.querySelector(".popup__figcaption");
 
 // Универсальная функция закрытия popup
-closePopupButtons.forEach((button) => {
+ButtonsСlosePopup.forEach((button) => {
   const popup = button.closest(".popup");
   button.addEventListener("click", () => closePopup(popup));
 });
@@ -61,6 +61,7 @@ function openPopup(popup) {
 // // Универсальная функция закрытия Popup
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  popup.removeEventListener("click", closeCardOnOverlay);
   document.removeEventListener("keydown", pressEscButton);
 }
 
@@ -89,8 +90,15 @@ formEditElement.addEventListener("submit", handleEditFormSubmit);
 // //слушатель открытия формы добавления карточки
 popupBtnAddOpen.addEventListener("click", () => {
   openPopup(cardAddPopup);
-  disableButton(cardAddPopup, validationConfig);
+  disableSubmitButton(cardAddPopup);
 });
+
+export function openImagePopup(cardName, cardLink) {
+  popupOpenImage.src = cardLink;
+  popupOpenImageText.textContent = cardName;
+  popupOpenImage.setAttribute("alt", cardName);
+  openPopup(popupShowImage);
+}
 
 initialCards.forEach((initialCard) => {
   //создание экземпляра карточки
@@ -111,12 +119,6 @@ function handleCardFormSubmit(evt) {
   listElement.prepend(cardElement);
   formAddCard.reset();
   closePopup(cardAddPopup);
-}
-
-function disableButton(popup) {
-  const button = popup.querySelector(validationConfig.submitButtonSelector);
-  button.disabled = true;
-  button.classList.add(validationConfig.inactiveButtonClass);
 }
 
 // // слушатель сабмита формы добавления карточки
