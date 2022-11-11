@@ -88,9 +88,10 @@ function handleEditFormSubmit(evt) {
 formEditElement.addEventListener("submit", handleEditFormSubmit);
 
 // //слушатель открытия формы добавления карточки
+
 popupBtnAddOpen.addEventListener("click", () => {
   openPopup(cardAddPopup);
-  disableSubmitButton(cardAddPopup);
+  formAddValidator.disableSubmitButton();
 });
 
 export function openImagePopup(cardName, cardLink) {
@@ -124,8 +125,7 @@ function handleCardFormSubmit(evt) {
 // // слушатель сабмита формы добавления карточки
 formAddCard.addEventListener("submit", handleCardFormSubmit);
 
-const formEditValidator = new FormValidator(validationConfig, profileEditPopup);
-const formAddValidator = new FormValidator(validationConfig, cardAddPopup);
-
+const formEditValidator = new FormValidator(validationConfig, formEditElement);
 formEditValidator.enableValidation();
+const formAddValidator = new FormValidator(validationConfig, formAddCard);
 formAddValidator.enableValidation();

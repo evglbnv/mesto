@@ -55,33 +55,34 @@ class FormValidator {
   // функция проверки кнопки сабмита на валидность
   _toggleButtonState = (inputList) => {
     if (this._hasInvalidInput(inputList)) {
-      this._enableSubmitButton();
-    } else {
       this.disableSubmitButton();
+    } else {
+      this._enableSubmitButton();
     }
   };
 
-  _enableSubmitButton = () => {
-    document
+  disableSubmitButton = () => {
+    this._formSelector
       .querySelector(this._submitButtonSelector)
       .classList.add(this._inactiveButtonClass);
-    document.querySelector(this._submitButtonSelector).disabled = true;
+    this._formSelector.querySelector(
+      this._submitButtonSelector
+    ).disabled = true;
   };
 
-  disableSubmitButton = () => {
-    document
+  _enableSubmitButton = () => {
+    this._formSelector
       .querySelector(this._submitButtonSelector)
       .classList.remove(this._inactiveButtonClass);
-    document.querySelector(this._submitButtonSelector).disabled = false;
+    this._formSelector.querySelector(
+      this._submitButtonSelector
+    ).disabled = false;
   };
 
   // Добавление обработчиков всем полям формы
   _setEventListeners = () => {
     const inputList = Array.from(
       this._formSelector.querySelectorAll(this._inputSelector)
-    );
-    const buttonElement = this._formSelector.querySelector(
-      this._submitButtonSelector
     );
     this._toggleButtonState(inputList);
     inputList.forEach((inputElement) => {
@@ -93,15 +94,6 @@ class FormValidator {
   };
 
   // функция Disable кнопки сабмита формы при открытии формы добавления карточки
-
-  // enableValidation = () => {
-  //   const formList = Array.from(document.querySelectorAll(this._formSelector));
-  //   formList.forEach((formElement) => {
-  //     formElement.addEventListener("submit", (evt) => {
-  //       evt.preventDefault();
-  //     });
-  //     this._setEventListeners(formElement);
-  //   });
 
   enableValidation = () => {
     this._formSelector.addEventListener("submit", (evt) => {
