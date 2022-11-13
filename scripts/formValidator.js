@@ -1,7 +1,8 @@
 const validationConfig = {
-  // formSelector: ".popup__form",
+  formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
+  button: document.querySelector(".popup__button"),
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "error_visible",
@@ -15,6 +16,9 @@ class FormValidator {
     this._submitButtonSelector = data.submitButtonSelector;
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
+    this._submitButton = this._formSelector.querySelector(
+      this._submitButtonSelector
+    );
   }
 
   _showInputError = (inputElement, errorMessage) => {
@@ -46,8 +50,8 @@ class FormValidator {
   };
 
   //Функция принимает на вход массив полей. Если все поля активны - активировать кнопку.
-  _hasInvalidInput = (inputList) => {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput = () => {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   };
@@ -62,44 +66,34 @@ class FormValidator {
   };
 
   disableSubmitButton = () => {
-    this._formSelector
-      .querySelector(this._submitButtonSelector)
-      .classList.add(this._inactiveButtonClass);
-    this._formSelector.querySelector(
-      this._submitButtonSelector
-    ).disabled = true;
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.disabled = true;
   };
 
   _enableSubmitButton = () => {
-    this._formSelector
-      .querySelector(this._submitButtonSelector)
-      .classList.remove(this._inactiveButtonClass);
-    this._formSelector.querySelector(
-      this._submitButtonSelector
-    ).disabled = false;
+    this._submitButton.classList.remove(this._inactiveButtonClass);
+    this._submitButton.disabled = false;
   };
 
   // Добавление обработчиков всем полям формы
   _setEventListeners = () => {
-    const inputList = Array.from(
+    this._inputList = Array.from(
       this._formSelector.querySelectorAll(this._inputSelector)
     );
-    this._toggleButtonState(inputList);
-    inputList.forEach((inputElement) => {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._isValid(inputElement);
-        this._toggleButtonState(inputList);
+        this._toggleButtonState();
       });
     });
   };
-
-  // функция Disable кнопки сабмита формы при открытии формы добавления карточки
 
   enableValidation = () => {
     this._formSelector.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    this._setEventListeners(this._formSelector);
+    this._setEventListeners();
   };
 }
 

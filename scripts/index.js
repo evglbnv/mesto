@@ -4,35 +4,27 @@ import Card from "./card.js";
 import { initialCards } from "./cards.js";
 import { validationConfig, FormValidator } from "./formValidator.js";
 
-const popup = document.querySelectorAll(".popup");
 const profileEditPopup = document.querySelector(".popup_type_edit-profile");
 const cardAddPopup = document.querySelector(".popup_type_add-card");
 const popupShowImage = document.querySelector(".popup_type_show-image");
-const ButtonsСlosePopup = document.querySelectorAll(".popup__close");
+const buttonsСlosePopup = document.querySelectorAll(".popup__close");
 const popupBtnEditOpen = document.querySelector(".profile__edit");
 const popupBtnAddOpen = document.querySelector(".profile__add");
-
 const formEditElement = document.querySelector("#popupEditForm");
-
 const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_job");
-const profileSubmit = document.querySelector("popup__button");
 const profileElement = document.querySelector(".profile");
 const profileName = profileElement.querySelector(".profile__name");
 const profileJob = profileElement.querySelector(".profile__profession");
-const cardTemplate = document.querySelector(".cards__template");
 const listElement = document.querySelector(".element__list");
-const inputElementAddName = document.querySelector(".popup__input_place_name");
-const inputElementAddLink = document.querySelector(".popup__input_place_link");
 const formAddCard = document.querySelector("#popupAddForm");
 const formAddPlaceName = formAddCard.querySelector(".popup__input_place_name");
 const formAddLink = formAddCard.querySelector(".popup__input_place_link");
-const cardImage = document.querySelector(".element__image");
 const popupOpenImage = document.querySelector(".popup__image");
 const popupOpenImageText = document.querySelector(".popup__figcaption");
 
-// Универсальная функция закрытия popup
-ButtonsСlosePopup.forEach((button) => {
+// Универсальная установка слушателей на кнопки закрытия.
+buttonsСlosePopup.forEach((button) => {
   const popup = button.closest(".popup");
   button.addEventListener("click", () => closePopup(popup));
 });
@@ -102,22 +94,24 @@ export function openImagePopup(cardName, cardLink) {
 }
 
 initialCards.forEach((initialCard) => {
+  createClassCard(initialCard.name, initialCard.link);
+});
+
+function createClassCard(name, link) {
   //создание экземпляра карточки
-  const card = new Card(initialCard.name, initialCard.link);
+  const card = new Card(name, link);
   //создание карточки и возвращение наружу
   const cardElement = card.generateCard();
   //добавление в DOM
   listElement.prepend(cardElement);
-});
+}
 
 // Функция сабмита добавления карточки
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardNameHeading = formAddPlaceName.value;
   const cardLinkPhoto = formAddLink.value;
-  const addCard = new Card(cardNameHeading, cardLinkPhoto);
-  const cardElement = addCard.generateCard();
-  listElement.prepend(cardElement);
+  createClassCard(cardNameHeading, cardLinkPhoto);
   formAddCard.reset();
   closePopup(cardAddPopup);
 }
