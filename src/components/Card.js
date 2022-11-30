@@ -1,15 +1,19 @@
-import { openImagePopup } from "./index.js";
+// import { openImagePopup } from "./index.js";
+// import { initialCards } from "./cards.js";
+// import Section from "../Section.js";
 
 export default class Card {
-  constructor(cardName, cardLink, templateSelector) {
-    this._cardName = cardName;
-    this._cardLink = cardLink;
+  constructor({ data, handleCardClick }, templateSelector) {
+    this._cardName = data.name;
+    this._cardLink = data.link;
+    this._data = data;
+    this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
   }
 
   _getTemplate() {
     const cardElement = document
-      .querySelector(".cards__template")
+      .querySelector(this._templateSelector)
       .content.querySelector(".element__card")
       .cloneNode(true);
 
@@ -41,13 +45,6 @@ export default class Card {
     this._element.remove();
   }
 
-  _handleCloseImagePopup() {
-    document.querySelector(".popup__image").src = "";
-    document
-      .querySelector(".popup_type_show-image")
-      .classList.remove("popup_opened");
-  }
-
   _setEventListeners() {
     this._element
       .querySelector(".element__like")
@@ -64,13 +61,8 @@ export default class Card {
     this._element
       .querySelector(".element__image")
       .addEventListener("click", () => {
-        openImagePopup(this._cardName, this._cardLink);
-      });
-
-    document
-      .getElementById("popupShowCloseBtn")
-      .addEventListener("click", () => {
-        this._handleCloseImagePopup();
+        this._handleCardClick(this._data);
+        console.log(this._cardName, this._cardLink);
       });
   }
 }

@@ -4,18 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./styles/index.css" />
   </head>
 
   <body class="root">
     <div class="page">
       <header class="header">
-        <img class="header__logo" src="./images/Vector.svg" alt="Логотип" />
+        <img
+          class="header__logo"
+          src="<%=require('./images/Vector.svg')%>"
+          alt="Логотип"
+        />
       </header>
 
       <main>
         <section class="profile">
-          <img class="profile__avatar" src="./images/avatar.png" alt="Аватар" />
+          <img
+            class="profile__avatar"
+            src="<%=require('./images/avatar.png')%>"
+            alt="Аватар"
+          />
           <div class="profile__container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit" type="button"></button>
@@ -72,7 +79,7 @@
             <input
               class="popup__input popup__input_type_job"
               type="text"
-              name="occupation"
+              name="job"
               value="Исследователь океана"
               id="occupation"
               placeholder="Ваша Деятельность"
@@ -105,7 +112,7 @@
             <input
               class="popup__input popup__input_place_name"
               type="text"
-              name="popupAddPlace"
+              name="name"
               id="add-name"
               placeholder="Название"
               minlength="2"
@@ -118,7 +125,7 @@
             <input
               class="popup__input popup__input_place_link"
               type="url"
-              name="poppAddLink"
+              name="link"
               id="add-link"
               placeholder="Ссылка на картинку"
               required
@@ -142,7 +149,5 @@
         ></button>
       </figure>
     </div>
-    <script type="module" src="./scripts/cards.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

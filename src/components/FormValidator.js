@@ -56,8 +56,8 @@ class FormValidator {
   };
 
   // функция проверки кнопки сабмита на валидность
-  _toggleButtonState = (inputList) => {
-    if (this._hasInvalidInput(inputList)) {
+  _toggleButtonState = () => {
+    if (this._hasInvalidInput()) {
       this.disableSubmitButton();
     } else {
       this._enableSubmitButton();
