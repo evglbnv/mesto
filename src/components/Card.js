@@ -24,21 +24,19 @@ export default class Card {
     // Запишем разметку в приватное поле _element.
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector(".element__image");
+    this._cardLike = this._element.querySelector(".element__like");
 
     this._element.querySelector(".element__text").textContent = this._cardName;
-    this._element.querySelector(".element__image").src = this._cardLink;
-    this._element
-      .querySelector(".element__image")
-      .setAttribute("alt", this._cardName);
+    this._cardImage.src = this._cardLink;
+    this._cardImage.setAttribute("alt", this._cardName);
 
     this._setEventListeners();
     return this._element;
   }
 
   _handleLike() {
-    this._element
-      .querySelector(".element__like")
-      .classList.toggle("element__like_active");
+    this._cardLike.classList.toggle("element__like_active");
   }
 
   _handleDelete() {
@@ -46,11 +44,9 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".element__like")
-      .addEventListener("click", () => {
-        this._handleLike();
-      });
+    this._cardLike.addEventListener("click", () => {
+      this._handleLike();
+    });
 
     this._element
       .querySelector(".element__delete")
@@ -58,11 +54,8 @@ export default class Card {
         this._handleDelete();
       });
 
-    this._element
-      .querySelector(".element__image")
-      .addEventListener("click", () => {
-        this._handleCardClick(this._data);
-        console.log(this._cardName, this._cardLink);
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardClick(this._data);
+    });
   }
 }
