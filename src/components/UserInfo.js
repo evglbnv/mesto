@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor({ nameSelector, infoSelector }) {
+  constructor({ nameSelector, infoSelector, avatarSelector }) {
     this._nameSelector = document.querySelector(nameSelector);
     this._infoSelector = document.querySelector(infoSelector);
+    this._avatarSelector = document.querySelector(avatarSelector);
   }
 
   getUserInfo() {
@@ -13,16 +14,13 @@ export default class UserInfo {
     return userInfo;
   }
 
+  setNewAvatar(data) {
+    this._avatarSelector.src = data.avatar;
+  }
+
   setUserInfo(data) {
     this._nameSelector.textContent = data.name;
-    this._infoSelector.textContent = data.job;
+    this._infoSelector.textContent = data.about;
+    this.setNewAvatar(data);
   }
 }
-
-// //сабмит формы редактирования профиля
-// function handleEditFormSubmit(evt) {
-//   evt.preventDefault();
-//   profileName.textContent = nameInput.value;
-//   profileJob.textContent = jobInput.value;
-//   closePopup(profileEditPopup);
-// }
