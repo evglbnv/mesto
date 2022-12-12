@@ -105,4 +105,52 @@ export default class Api {
         console.log(err);
       });
   }
+
+  deleteCardRequest(id) {
+    return fetch(`${this.baseUrl}/cards/${id} `, {
+      method: "DELETE",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  addLike(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes `, {
+      method: "PUT",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  deleteLike(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes `, {
+      method: "DELETE",
+      headers: this.headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }

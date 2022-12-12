@@ -21,15 +21,16 @@
           <div class="profile__container">
             <img
               class="profile__avatar"
-              src="<%=require('./images/avatar.png')%>"
+              src=""
               alt="Аватар"
             />
             <div class="profile__avatar-overlay"></div>
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit" type="button"></button>
-            <p class="profile__profession">Исследователь океана</p>
-          </div>
+            <p class="profile__profession"></p>
+          
           <button class="profile__add" type="button"></button>
+        </div>
         </section>
 
         <section class="element">
@@ -43,7 +44,7 @@
 
     <template class="cards__template">
       <li class="element__card">
-        <img class="element__image" />
+        <img class="element__image">
         <div class="element__container">
           <h2 class="element__text"></h2>
           <div class="element__like-container">
@@ -70,7 +71,7 @@
               class="popup__input popup__input_type_name"
               type="text"
               name="name"
-              value="Жак-Ив Кусто"
+              value=""
               id="name"
               placeholder="Имя"
               minlength="2"
@@ -84,7 +85,7 @@
               class="popup__input popup__input_type_job"
               type="text"
               name="job"
-              value="Исследователь океана"
+              value=""
               id="occupation"
               placeholder="Ваша Деятельность"
               minlength="2"

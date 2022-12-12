@@ -14,7 +14,7 @@
   grid-area: user-name;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (min-width: 320px) and (max-width: 720px) {
   .profile__name {
     text-align: center;
     font-size: 27px;

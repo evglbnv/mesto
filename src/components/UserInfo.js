@@ -22,5 +22,6 @@ export default class UserInfo {
     this._nameSelector.textContent = data.name;
     this._infoSelector.textContent = data.about;
     this.setNewAvatar(data);
+    this.userId = data._id;
   }
 }

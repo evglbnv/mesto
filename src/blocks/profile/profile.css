@@ -8,9 +8,7 @@
 
 @media screen and (max-width: 720px) {
   .profile {
-    grid-template-columns: none;
-    grid-template-rows: 120px 1fr 1fr;
-    justify-items: center;
+    justify-content: center;
     gap: 25px;
   }
 }

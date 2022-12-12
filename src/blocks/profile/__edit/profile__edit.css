@@ -1,9 +1,7 @@
 .profile__edit {
   width: 24px;
   height: 24px;
-  position: relative;
-  top: -11px;
-  right: -8px;
+
   cursor: pointer;
   border: 1px solid #fff;
   background: transparent;
