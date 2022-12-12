@@ -19,18 +19,14 @@
       <main>
         <section class="profile">
           <div class="profile__container">
-            <img
-              class="profile__avatar"
-              src=""
-              alt="Аватар"
-            />
+            <img class="profile__avatar" src="#" alt="Аватар" />
             <div class="profile__avatar-overlay"></div>
             <h1 class="profile__name"></h1>
             <button class="profile__edit" type="button"></button>
             <p class="profile__profession"></p>
-          
-          <button class="profile__add" type="button"></button>
-        </div>
+
+            <button class="profile__add" type="button"></button>
+          </div>
         </section>
 
         <section class="element">
@@ -44,7 +40,7 @@
 
     <template class="cards__template">
       <li class="element__card">
-        <img class="element__image">
+        <img class="element__image" />
         <div class="element__container">
           <h2 class="element__text"></h2>
           <div class="element__like-container">
@@ -157,7 +153,7 @@
           novalidate
         >
           <h3 class="popup__heading">Вы уверены?</h3>
-          <button type="submit" class="popup__button" id="popupAddSubmitBtn">
+          <button type="submit" class="popup__button" id="popupDeleteSubmitBtn">
             Да
           </button>
         </form>
@@ -165,12 +161,7 @@
     </div>
     <div class="popup popup_type_avatar-update" id="popupUpdate">
       <div class="popup__container">
-        </label>
-        <button
-          class="popup__close"
-          type="button"
-          id="popupCloseBtn"
-        ></button>
+        <button class="popup__close" type="button" id="popupCloseBtn"></button>
         <form
           class="popup__form"
           name="avatar-update"
@@ -188,6 +179,7 @@
               required
             />
             <span class="error error_visible" id="add-name-error"></span>
+          </label>
           <button
             type="submit"
             class="popup__button"
