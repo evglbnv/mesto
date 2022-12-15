@@ -23,6 +23,9 @@ export const formAddLink = formAddCard.querySelector(
 export const popupOpenImage = document.querySelector(".popup__image");
 export const popupOpenImageText = document.querySelector(".popup__figcaption");
 export const cardListSelector = ".element__list";
+export const avatarEditElement = document.querySelector(
+  ".popup_type_avatar-update"
+);
 
 export const initialCards = [
   {

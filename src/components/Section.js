@@ -6,7 +6,7 @@ export default class Section {
 
   //Отрисовка карточек через renderer
   renderAllElements(cards) {
-    cards.forEach((item) => this._renderer(item));
+    cards.reverse().forEach((item) => this._renderer(item));
   }
 
   //Принимает DOM элемент и добавляет его в контейнер

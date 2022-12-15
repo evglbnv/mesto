@@ -15,6 +15,7 @@ import { formAddCard, popupBtnEditOpen } from "../utils/constants.js";
 import { popupBtnAddOpen } from "../utils/constants.js";
 import { cardListSelector } from "../utils/constants.js";
 import { formEditElement } from "../utils/constants.js";
+import { avatarEditElement } from "../utils/constants.js";
 import "./index.css";
 import Api from "../components/Api.js";
 
@@ -33,13 +34,6 @@ const infoPopup = new UserInfo({
 });
 
 //получение с сервера данных о пользователе и массива карточек с их дальнейшей отрисовкой
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([user, cards]) => {
-    infoPopup.setUserInfo(user), cardsList.renderAllElements(cards);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 // // Слушатели событий на открытие попапа редактирования формы
 popupBtnEditOpen.addEventListener("click", () => {
@@ -54,9 +48,7 @@ popupBtnAddOpen.addEventListener("click", () => {
   formAddValidator.disableSubmitButton();
 });
 
-const deleteForm = new PopupDeleteSubmit(".popup_type_confirm-delete", () => {
-  console.log("delete");
-});
+const deleteForm = new PopupDeleteSubmit(".popup_type_confirm-delete");
 
 deleteForm.setEventListeners();
 
@@ -73,11 +65,13 @@ function createCard(data) {
       handleDeleteClick: (id) => {
         deleteForm.open();
         deleteForm.setCard(() => {
-          api.deleteCardRequest(id).then((res) => {
-            card.deleteCard();
-            deleteForm.close();
-            console.log(res);
-          });
+          api
+            .deleteCardRequest(id)
+            .then((res) => {
+              card.deleteCard();
+              deleteForm.close();
+            })
+            .catch((err) => console.log(err));
         });
       },
       handleLikeClick: (id) => {
@@ -85,7 +79,7 @@ function createCard(data) {
           api
             .deleteLike(id)
             .then((res) => {
-              card._setLikes(res.likes.length);
+              card.setLikes(res.likes.length);
               card.toggleCardLike();
             })
             .catch((err) => console.log(err));
@@ -93,7 +87,7 @@ function createCard(data) {
           api
             .addLike(id)
             .then((res) => {
-              card._setLikes(res.likes.length);
+              card.setLikes(res.likes.length);
               card.toggleCardLike();
             })
             .catch((err) => console.log(err));
@@ -113,7 +107,8 @@ const addPopup = new PopupWithForm(".popup_type_add-card", {
     api
       .addCardRequest(data)
       .then((res) => {
-        cardsList.addItem(res);
+        addPopup.close();
+        cardsList.addItem(createCard(res));
       })
       .catch((err) => console.log(err))
       .finally(() => addPopup.setSubmitButtonLoading(false));
@@ -129,6 +124,7 @@ const editPopup = new PopupWithForm(".popup_type_edit-profile", {
     api
       .userEditinfo(data)
       .then((res) => {
+        editPopup.close();
         infoPopup.setUserInfo(res);
       })
       .catch((err) => console.log(err))
@@ -146,6 +142,7 @@ const avatarEditPopup = new PopupWithForm(".popup_type_avatar-update", {
       .setUserAvatar(data)
       .then((res) => {
         console.log(res);
+        avatarEditPopup.close();
         infoPopup.setNewAvatar(res);
       })
       .catch((err) => console.log(err))
@@ -158,6 +155,19 @@ document
   .querySelector(".profile__avatar-overlay")
   .addEventListener("click", () => avatarEditPopup.open());
 
+const imagePopup = new PopupWithImage(".popup_type_show-image");
+imagePopup.setEventListeners();
+
+const formEditValidator = new FormValidator(validationConfig, formEditElement);
+formEditValidator.enableValidation();
+const formAddValidator = new FormValidator(validationConfig, formAddCard);
+formAddValidator.enableValidation();
+const avatarEditValidator = new FormValidator(
+  validationConfig,
+  avatarEditElement
+);
+avatarEditValidator.enableValidation();
+
 const cardsList = new Section(
   {
     renderer: (item) => {
@@ -168,10 +178,10 @@ const cardsList = new Section(
   cardListSelector
 );
 
-const imagePopup = new PopupWithImage(".popup_type_show-image");
-imagePopup.setEventListeners();
-
-const formEditValidator = new FormValidator(validationConfig, formEditElement);
-formEditValidator.enableValidation();
-const formAddValidator = new FormValidator(validationConfig, formAddCard);
-formAddValidator.enableValidation();
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    infoPopup.setUserInfo(user), cardsList.renderAllElements(cards);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

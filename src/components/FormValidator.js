@@ -24,6 +24,7 @@ class FormValidator {
     const errorElement = this._formSelector.querySelector(
       `#${inputElement.id}-error`
     );
+    console.log(inputElement.id);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.classList.add(this._errorClass);
     errorElement.textContent = errorMessage;

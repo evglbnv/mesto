@@ -30,19 +30,14 @@ export default class Card {
     return cardElement;
   }
 
-  _setLikes(value) {
-    const likeCountElement = this._element.querySelector(
-      ".element__like-counter"
-    );
-
-    likeCountElement.textContent = value;
-  }
-
   generateCard() {
     // Запишем разметку в приватное поле _element.
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
 
+    this._likeCountElement = this._element.querySelector(
+      ".element__like-counter"
+    );
     this._cardImage = this._element.querySelector(".element__image");
     this._cardLike = this._element.querySelector(".element__like");
 
@@ -50,7 +45,6 @@ export default class Card {
     this._cardImage.src = this._cardLink;
     this._cardImage.setAttribute("alt", this._cardName);
 
-    this._setLikes();
     this._element.querySelector(".element__like-counter").textContent =
       this._likes.length;
 
@@ -68,6 +62,10 @@ export default class Card {
 
     this._setEventListeners();
     return this._element;
+  }
+
+  setLikes(value) {
+    this._likeCountElement.textContent = value;
   }
 
   toggleCardLike() {
