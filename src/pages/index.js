@@ -153,7 +153,10 @@ const avatarEditPopup = new PopupWithForm(".popup_type_avatar-update", {
 avatarEditPopup.setEventListeners();
 document
   .querySelector(".profile__avatar-overlay")
-  .addEventListener("click", () => avatarEditPopup.open());
+  .addEventListener("click", () => {
+    avatarEditPopup.open();
+    avatarEditValidator.disableSubmitButton();
+  });
 
 const imagePopup = new PopupWithImage(".popup_type_show-image");
 imagePopup.setEventListeners();
